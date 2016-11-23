@@ -5,7 +5,6 @@ import java.util.List;
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Fee;
 import ar.edu.unju.fi.soo.model.Plan;
-import ar.edu.unju.fi.soo.model.Plan7030;
 import ar.edu.unju.fi.soo.model.Vehicle;
 
 public interface AgencyService {
@@ -34,7 +33,7 @@ public interface AgencyService {
 
 	void saveVehicle(Vehicle vehicle);
 	
-	Plan7030 createPlan7030(Vehicle vehicle, Client client, int feesAmount);
+	void createPlan(Vehicle vehicle, Client client, int feesAmount, String planType);
 
 	Plan getPlanById(Long id);
 

@@ -11,6 +11,7 @@ import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Fee;
 import ar.edu.unju.fi.soo.model.Plan;
 import ar.edu.unju.fi.soo.model.Plan7030;
+import ar.edu.unju.fi.soo.model.PlanRegular;
 import ar.edu.unju.fi.soo.model.Vehicle;
 import ar.edu.unju.fi.soo.model.dao.ClientDAO;
 import ar.edu.unju.fi.soo.model.dao.FeeDAO;
@@ -74,6 +75,7 @@ public class AgencyServiceImpl implements AgencyService {
 	public List<Plan> findPlanByClientDNI(String planType, String clientField) {
 		return planDAO.findAllByClientDNI(planType, clientField);
 	}
+
 	@Transactional
 	@Override
 	public void deleteClient(Client client) {
@@ -96,13 +98,19 @@ public class AgencyServiceImpl implements AgencyService {
 		vehicleDAO.save(vehicle);
 	}
 
-
 	@Transactional
 	@Override
-	public Plan7030 createPlan7030(Vehicle vehicle, Client client, int feesAmount) {
-		Plan7030 plan = new Plan7030(vehicle, client, feesAmount);
-		return plan;
+	public void createPlan(Vehicle vehicle, Client client, int feesAmount, String planType) {
+		Plan plan = null;
+		if (planType == "planRegular") {
+			plan = new PlanRegular(vehicle, client, feesAmount);
+		} else {
+			plan = new Plan7030(vehicle, client, feesAmount);
+		}
+		System.out.println("Guardando nuevo plan " + planType);
+		planDAO.save(plan);
 	}
+
 	@Override
 	public Plan getPlanById(Long id) {
 		return planDAO.get(id);
