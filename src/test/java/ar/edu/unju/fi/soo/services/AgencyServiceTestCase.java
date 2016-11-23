@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,19 +14,23 @@ import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Plan;
 import ar.edu.unju.fi.soo.model.PlanRegular;
 import ar.edu.unju.fi.soo.model.Vehicle;
-import ar.edu.unju.fi.soo.services.impl.AgencyServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:test-context.xml" })
 public class AgencyServiceTestCase {
 	
 	@Autowired
-	private AgencyServiceImpl agencyService;
+	private AgencyService agencyService;
 	private String clientName = "nombre test";
 	private Vehicle vehicle;
 
 	protected void setUp() {
 		vehicle = new Vehicle(240000d);
+	}
+
+	@Test
+	public void emptyTest() {
+		assert true;
 	}
 
 	/**

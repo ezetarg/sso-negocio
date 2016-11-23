@@ -9,47 +9,44 @@ import java.net.URL;
 
 import javax.inject.Named;
 
-import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unju.fi.soo.services.NetClientGet;
 
 @Named
-@Transactional
 public class NetClientGetImpl implements NetClientGet {
+
 	@Override
 	public String getCurrencyValue() {
 		String output = null;
-		 try {
+		try {
 
-				URL url = new URL("http://currencies.apps.grandtrunk.net/getlatest/usd/ars");
-				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-				conn.setRequestMethod("GET");
-				conn.setRequestProperty("Accept", "application/json");
+			URL url = new URL("http://currencies.apps.grandtrunk.net/getlatest/usd/ars");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Accept", "application/json");
 
-				if (conn.getResponseCode() != 200) {
-					throw new RuntimeException("Failed : HTTP error code : "
-							+ conn.getResponseCode());
-				}
+			if (conn.getResponseCode() != 200) {
+				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+			}
 
-				BufferedReader br = new BufferedReader(new InputStreamReader(
-					(conn.getInputStream())));
+			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
-				
-				while ((output = br.readLine()) != null) {
-					System.out.println(output);
-				}
-				conn.disconnect();
-		
-			  } catch (MalformedURLException e) {
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				output = line;
+			}
+			conn.disconnect();
 
-				e.printStackTrace();
+		} catch (MalformedURLException e) {
 
-			  } catch (IOException e) {
+			e.printStackTrace();
 
-				e.printStackTrace();
+		} catch (IOException e) {
 
-			  }
-		  return output;
-		 
+			e.printStackTrace();
+
+		}
+		return output;
+
 	}
 
 	@Override
