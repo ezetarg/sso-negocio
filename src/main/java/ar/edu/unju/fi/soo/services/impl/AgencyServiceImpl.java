@@ -7,7 +7,6 @@ import javax.inject.Named;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.unju.fi.soo.dao.impl.ClientDAOImplTestCase;
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Fee;
 import ar.edu.unju.fi.soo.model.Plan;
@@ -97,10 +96,15 @@ public class AgencyServiceImpl implements AgencyService {
 		vehicleDAO.save(vehicle);
 	}
 
+
 	@Transactional
 	@Override
 	public Plan7030 createPlan7030(Vehicle vehicle, Client client, int feesAmount) {
 		Plan7030 plan = new Plan7030(vehicle, client, feesAmount);
 		return plan;
+	}
+	@Override
+	public Plan getPlanById(Long id) {
+		return planDAO.get(id);
 	}
 }

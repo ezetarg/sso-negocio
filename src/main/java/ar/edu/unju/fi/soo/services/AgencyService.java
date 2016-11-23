@@ -36,4 +36,6 @@ public interface AgencyService {
 	
 	Plan7030 createPlan7030(Vehicle vehicle, Client client, int feesAmount);
 
+	Plan getPlanById(Long id);
+
 }
