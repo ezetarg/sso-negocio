@@ -69,6 +69,7 @@ public class AgencyServiceImpl implements AgencyService {
 		return clientDAO.list();
 	}
 
+	@Transactional
 	@Override
 	public void deleteClient(Client client) {
 		clientDAO.delete(client);
@@ -77,5 +78,16 @@ public class AgencyServiceImpl implements AgencyService {
 	@Override
 	public Client getClientById(Long id) {
 		return clientDAO.get(id);
+	}
+
+	@Override
+	public Vehicle getVehicleById(Long id) {
+		return vehicleDAO.get(id);
+	}
+
+	@Transactional
+	@Override
+	public void saveVehicle(Vehicle vehicle) {
+		vehicleDAO.save(vehicle);
 	}
 }

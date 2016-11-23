@@ -26,4 +26,8 @@ public interface AgencyService {
 	void deleteClient(Client client);
 
 	Client getClientById(Long id);
+
+	Vehicle getVehicleById(Long id);
+
+	void saveVehicle(Vehicle vehicle);
 }
