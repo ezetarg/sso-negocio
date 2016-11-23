@@ -22,4 +22,8 @@ public interface AgencyService {
 	List<Vehicle> listVehicles();
 
 	List<Client> listClients();
+
+	void deleteClient(Client client);
+
+	Client getClientById(Long id);
 }

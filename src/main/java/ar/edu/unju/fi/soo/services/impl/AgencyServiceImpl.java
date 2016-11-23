@@ -68,4 +68,14 @@ public class AgencyServiceImpl implements AgencyService {
 	public List<Client> listClients() {
 		return clientDAO.list();
 	}
+
+	@Override
+	public void deleteClient(Client client) {
+		clientDAO.delete(client);
+	}
+
+	@Override
+	public Client getClientById(Long id) {
+		return clientDAO.get(id);
+	}
 }
