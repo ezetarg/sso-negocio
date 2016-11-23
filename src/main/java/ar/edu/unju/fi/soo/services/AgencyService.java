@@ -22,4 +22,6 @@ public interface AgencyService {
 	List<Vehicle> listVehicles();
 
 	List<Client> listClients();
+
+	List<Plan> findPlanByClientDNI(String planType, String clientField);
 }

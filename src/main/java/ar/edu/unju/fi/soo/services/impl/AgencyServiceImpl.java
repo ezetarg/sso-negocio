@@ -7,6 +7,7 @@ import javax.inject.Named;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unju.fi.soo.dao.impl.ClientDAOImplTestCase;
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Fee;
 import ar.edu.unju.fi.soo.model.Plan;
@@ -67,5 +68,10 @@ public class AgencyServiceImpl implements AgencyService {
 	@Override
 	public List<Client> listClients() {
 		return clientDAO.list();
+	}
+
+	@Override
+	public List<Plan> findPlanByClientDNI(String planType, String clientField) {
+		return planDAO.findAllByClientDNI(planType, clientField);
 	}
 }
