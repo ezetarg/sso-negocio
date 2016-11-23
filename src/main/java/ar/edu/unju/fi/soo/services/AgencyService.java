@@ -33,7 +33,7 @@ public interface AgencyService {
 
 	void saveVehicle(Vehicle vehicle);
 	
-	void createPlan(Vehicle vehicle, Client client, int feesAmount, String planType);
+	void createPlan(Long vehicleId, Long clientId, int feesAmount, String planType);
 
 	Plan getPlanById(Long id);
 

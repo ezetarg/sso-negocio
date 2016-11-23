@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.soo.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -100,14 +101,19 @@ public class AgencyServiceImpl implements AgencyService {
 
 	@Transactional
 	@Override
-	public void createPlan(Vehicle vehicle, Client client, int feesAmount, String planType) {
+	public void createPlan(Long vehicleId, Long clientId, int feesAmount, String planType) {
 		Plan plan = null;
+		Vehicle vehicle = vehicleDAO.get(vehicleId);
+		Client client = clientDAO.get(clientId);
+
 		if (planType == "planRegular") {
 			plan = new PlanRegular(vehicle, client, feesAmount);
 		} else {
 			plan = new Plan7030(vehicle, client, feesAmount);
 		}
+
 		System.out.println("Guardando nuevo plan " + planType);
+		plan.setCreateDate(new Date());
 		planDAO.save(plan);
 	}
 
