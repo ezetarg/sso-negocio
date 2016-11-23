@@ -7,7 +7,6 @@ import javax.inject.Named;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.unju.fi.soo.dao.impl.ClientDAOImplTestCase;
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Fee;
 import ar.edu.unju.fi.soo.model.Plan;
