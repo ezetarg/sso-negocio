@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Plan;
+import ar.edu.unju.fi.soo.model.Vehicle;
 import ar.edu.unju.fi.soo.model.dao.ClientDAO;
 import ar.edu.unju.fi.soo.model.dao.PlanDAO;
+import ar.edu.unju.fi.soo.model.dao.VehicleDAO;
 import ar.edu.unju.fi.soo.services.AgencyService;
 
 @Named
@@ -20,6 +22,8 @@ public class AgencyServiceImpl implements AgencyService {
 	private ClientDAO clientDAO;
 	@Inject
 	private PlanDAO planDAO;
+	@Inject
+	private VehicleDAO vehicleDAO;
 
 	@Override
 	public List<Plan> findPlanByClientName(String clientName) {
@@ -34,5 +38,17 @@ public class AgencyServiceImpl implements AgencyService {
 	@Override
 	public void saveClient(Client client) {
 		clientDAO.save(client);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Vehicle> listVehicles() {
+		return vehicleDAO.list();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Client> listClients() {
+		return clientDAO.list();
 	}
 }
