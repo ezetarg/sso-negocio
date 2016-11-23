@@ -11,6 +11,7 @@ import ar.edu.unju.fi.soo.dao.impl.ClientDAOImplTestCase;
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Fee;
 import ar.edu.unju.fi.soo.model.Plan;
+import ar.edu.unju.fi.soo.model.Plan7030;
 import ar.edu.unju.fi.soo.model.Vehicle;
 import ar.edu.unju.fi.soo.model.dao.ClientDAO;
 import ar.edu.unju.fi.soo.model.dao.FeeDAO;
@@ -94,5 +95,12 @@ public class AgencyServiceImpl implements AgencyService {
 	@Override
 	public void saveVehicle(Vehicle vehicle) {
 		vehicleDAO.save(vehicle);
+	}
+
+	@Transactional
+	@Override
+	public Plan7030 createPlan7030(Vehicle vehicle, Client client, int feesAmount) {
+		Plan7030 plan = new Plan7030(vehicle, client, feesAmount);
+		return plan;
 	}
 }
