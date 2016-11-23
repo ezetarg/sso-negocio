@@ -17,7 +17,6 @@ import ar.edu.unju.fi.soo.model.Vehicle;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:test-context.xml" })
-
 public class AgencyServiceTestCase {
 	private String clientName = "nombre test";
 	private Agency agency;
