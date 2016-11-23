@@ -74,4 +74,25 @@ public class AgencyServiceImpl implements AgencyService {
 	public List<Plan> findPlanByClientDNI(String planType, String clientField) {
 		return planDAO.findAllByClientDNI(planType, clientField);
 	}
+	@Transactional
+	@Override
+	public void deleteClient(Client client) {
+		clientDAO.delete(client);
+	}
+
+	@Override
+	public Client getClientById(Long id) {
+		return clientDAO.get(id);
+	}
+
+	@Override
+	public Vehicle getVehicleById(Long id) {
+		return vehicleDAO.get(id);
+	}
+
+	@Transactional
+	@Override
+	public void saveVehicle(Vehicle vehicle) {
+		vehicleDAO.save(vehicle);
+	}
 }

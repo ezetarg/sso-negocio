@@ -24,4 +24,13 @@ public interface AgencyService {
 	List<Client> listClients();
 
 	List<Plan> findPlanByClientDNI(String planType, String clientField);
+
+	void deleteClient(Client client);
+
+	Client getClientById(Long id);
+
+	Vehicle getVehicleById(Long id);
+
+	void saveVehicle(Vehicle vehicle);
+
 }
