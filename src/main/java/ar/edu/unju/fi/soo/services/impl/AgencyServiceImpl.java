@@ -94,4 +94,9 @@ public class AgencyServiceImpl implements AgencyService {
 	public void saveVehicle(Vehicle vehicle) {
 		vehicleDAO.save(vehicle);
 	}
+
+	@Override
+	public Plan getPlanById(Long id) {
+		return planDAO.get(id);
+	}
 }

@@ -33,4 +33,6 @@ public interface AgencyService {
 
 	void saveVehicle(Vehicle vehicle);
 
+	Plan getPlanById(Long id);
+
 }
