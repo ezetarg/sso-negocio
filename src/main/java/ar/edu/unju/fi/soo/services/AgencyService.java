@@ -36,5 +36,9 @@ public interface AgencyService {
 	void createPlan(Long vehicleId, Long clientId, int feesAmount, String planType);
 
 	Plan getPlanById(Long id);
+	
+	Client getClientByName(String name);
+	
+	Vehicle getVehicleByCode(String code);
 
 }

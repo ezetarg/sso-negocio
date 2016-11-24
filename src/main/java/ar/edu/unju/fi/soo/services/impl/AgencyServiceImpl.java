@@ -121,4 +121,14 @@ public class AgencyServiceImpl implements AgencyService {
 	public Plan getPlanById(Long id) {
 		return planDAO.get(id);
 	}
+
+	@Override
+	public Client getClientByName(String name) {
+		return clientDAO.findByName(name);
+	}
+
+	@Override
+	public Vehicle getVehicleByCode(String code) {
+		return vehicleDAO.findByCode(code);
+	}
 }
