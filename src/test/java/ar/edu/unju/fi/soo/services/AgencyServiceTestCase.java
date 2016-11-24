@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import ar.edu.unju.fi.soo.model.Client;
 import ar.edu.unju.fi.soo.model.Plan;
-import ar.edu.unju.fi.soo.model.Plan7030;
 import ar.edu.unju.fi.soo.model.PlanRegular;
 import ar.edu.unju.fi.soo.model.Vehicle;
 
@@ -25,24 +24,13 @@ public class AgencyServiceTestCase {
 	private String clientName = "nombre test";
 	private Vehicle vehicle;
 	private Client client;
-	private Plan7030 plan;
 	private List<Plan> plans;
-	private Long planId;
-	
 	private Client clientTest;
 	private Vehicle vehicleTest;
 
 	protected void setUp() {
 		//vehicle = new Vehicle(240000d);
-		vehicle = new Vehicle();
-		vehicle.setValue(4521700d);
-		vehicle.setModel("2008");
-		vehicle.setBrand("Fiat100");
-		client = new Client();
-		client.setName("nameTest");
-		client.setDni("375896554");
-		agencyService.saveClient(client);
-		agencyService.saveVehicle(vehicle);
+
 	}
 
 	@Test
@@ -96,6 +84,26 @@ public class AgencyServiceTestCase {
 		
 		String code = agencyService.getVehicleByCode(vehicleTest.getCode()).getCode();
 		assertEquals(vehicleTest.getCode(), code);
+	}
+	
+	@Test
+	public void TestPayNextFee(){
+		clientTest = new Client();
+		clientTest.setName("nameTestClient");
+		clientTest.setDni("dniTestClient");
+		agencyService.saveClient(clientTest); 
+		
+		vehicleTest = new Vehicle();
+		vehicleTest.setValue(542478d);
+		vehicleTest.setCode("codeTestVehicle");			
+		agencyService.saveVehicle(vehicleTest);
+		
+
+		agencyService.createPlan(1l, 1l, 80, "plan7030");
+		
+		agencyService.payNextFee(1l);
+		
+		assertTrue(agencyService.getPlanById(1l).getFees().get(0).isPaid());
 	}
 	
 	
