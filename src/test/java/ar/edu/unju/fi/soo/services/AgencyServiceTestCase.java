@@ -30,7 +30,6 @@ public class AgencyServiceTestCase {
 
 	protected void setUp() {
 		//vehicle = new Vehicle(240000d);
-
 	}
 
 	@Test
@@ -41,30 +40,28 @@ public class AgencyServiceTestCase {
 	/**
 	 * Test de buscar un plan por cliente
 	 */
+	@Test
 	public void testFindPlanByClient() {
-		String expectedClientName = clientName;
+		clientTest = new Client();
+		clientTest.setName("nameTestClient");
+		clientTest.setDni("dniTestClient");
+		agencyService.saveClient(clientTest); 
+		
+		vehicleTest = new Vehicle();
+		vehicleTest.setValue(542478d);
+		vehicleTest.setCode("codeTestVehicle");			
+		agencyService.saveVehicle(vehicleTest);
+		
+		agencyService.createPlan(1l, 1l, 80, "planRegular");
 
-		// Se guarda el cliente
-		Client client = new Client(expectedClientName, "");
-		agencyService.saveClient(client);
-
-		// Se guarda el plan
-		Plan plan = new PlanRegular(vehicle, client, 80);
-		agencyService.savePlan(plan);
-
-		List<Plan> plans = agencyService.findPlanByClientName(expectedClientName);
+		List<Plan> plans = agencyService.findPlanByClientName(clientTest.getName());
 		Plan planFound = plans.get(0);
 
-		assertEquals(planFound.getClient().getName(), expectedClientName);
-		assertEquals(planFound, plan);
+		assertEquals(planFound.getClient().getName(), clientTest.getName());
 	}
 	
-	
-	public void testCreatePlan7030(){
-		plans = agencyService.findPlanByClientDNI(null, client.getDni());
-		assertNotNull(plans);
-	}
-	
+
+	@Test
 	public void testCreateClient(){
 		clientTest = new Client();
 		clientTest.setName("nameTestClient");
