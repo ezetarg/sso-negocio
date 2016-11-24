@@ -37,4 +37,6 @@ public interface AgencyService {
 
 	Plan getPlanById(Long id);
 
+	void deleteVehicle(Vehicle vehicle);
+
 }

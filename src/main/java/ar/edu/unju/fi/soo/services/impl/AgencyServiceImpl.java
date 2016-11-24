@@ -101,6 +101,12 @@ public class AgencyServiceImpl implements AgencyService {
 
 	@Transactional
 	@Override
+	public void deleteVehicle(Vehicle vehicle) {
+		vehicleDAO.delete(vehicle);
+	}
+
+	@Transactional
+	@Override
 	public void createPlan(Long vehicleId, Long clientId, int feesAmount, String planType) {
 		Plan plan = null;
 		Vehicle vehicle = vehicleDAO.get(vehicleId);
